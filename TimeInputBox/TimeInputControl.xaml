@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="TimeInputBox.TimeInputControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TimeInputBox"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Path x:Key="UpArrowPath"
+              Width="10"
+              Height="4"
+              Data="M0,1 L1,0 2,1z"
+              Stretch="Fill"
+              Stroke="Black"
+              x:Shared="False" />
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <RepeatButton Grid.Row="0"
+                      Grid.Column="0"
+                      Click="OnIncreaseHourseClick"
+                      Content="{StaticResource UpArrowPath}" />
+
+        <RepeatButton Grid.Row="0"
+                      Grid.Column="2"
+                      Click="OnIncreaseMinutesClick"
+                      Content="{StaticResource UpArrowPath}" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="0"
+                 IsReadOnly="True"
+                 Text="{Binding Time.Hours,
+                                RelativeSource={RelativeSource AncestorType={x:Type local:TimeInputControl}},
+                                StringFormat='{}{0:00}'}" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   Text=":" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="2"
+                 IsReadOnly="True"
+                 Text="{Binding Time.Minutes,
+                                RelativeSource={RelativeSource AncestorType={x:Type local:TimeInputControl}},
+                                StringFormat='{}{0:00}'}" />
+
+        <RepeatButton Grid.Row="2"
+                      Grid.Column="0"
+                      Click="OnDecreaseHourseClick"
+                      Content="{StaticResource UpArrowPath}"
+                      RenderTransformOrigin="0.5,0.5">
+            <RepeatButton.RenderTransform>
+                <RotateTransform Angle="180" />
+            </RepeatButton.RenderTransform>
+        </RepeatButton>
+
+        <RepeatButton Grid.Row="2"
+                      Grid.Column="2"
+                      Click="OnDecreaseMinutesClick"
+                      Content="{StaticResource UpArrowPath}"
+                      RenderTransformOrigin="0.5,0.5">
+            <RepeatButton.RenderTransform>
+                <RotateTransform Angle="180" />
+            </RepeatButton.RenderTransform>
+        </RepeatButton>
+    </Grid>
+</UserControl>
