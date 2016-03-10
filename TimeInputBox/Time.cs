@@ -2,6 +2,7 @@
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+
     using TimeInputBox.Annotations;
 
     public class Time : INotifyPropertyChanged
